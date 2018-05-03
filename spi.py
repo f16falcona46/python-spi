@@ -404,7 +404,8 @@ class SPI(object):
                                        length, speed, delay, bits_per_word,
                                        keepalive, 0, 0, 0)
         fcntl.ioctl(self.handle, SPI._IOC_MESSAGE, spi_ioc_transfer)
-        return [ord(byte) for byte in ctypes.string_at(receive_buffer, length)]
+        return ctypes.string_at(receive_buffer, length)
+        #return [ord(byte) for byte in ctypes.string_at(receive_buffer, length)]
 
     def transfer(self, data, speed=0, bits_per_word=0, delay=0, keepalive=0):
         """Perform full-duplex SPI transfer
@@ -431,4 +432,5 @@ class SPI(object):
                                        length, speed, delay, bits_per_word,
                                        keepalive, 0, 0, 0)
         fcntl.ioctl(self.handle, SPI._IOC_MESSAGE, spi_ioc_transfer)
-        return [ord(byte) for byte in ctypes.string_at(receive_buffer, length)]
+        return ctypes.string_at(receive_buffer, length)
+        #return [ord(byte) for byte in ctypes.string_at(receive_buffer, length)]
